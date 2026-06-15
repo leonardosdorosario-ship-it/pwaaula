@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PWA Educacional</title>
+
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#2563eb">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+min-height:100vh;
+padding:30px;
+}
+
+header{
+text-align:center;
+margin-bottom:40px;
+}
+
+header h1{
+font-size:3rem;
+margin-bottom:10px;
+}
+
+header p{
+font-size:1.2rem;
+opacity:.9;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.card{
+background:#1e293b;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.3);
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.card h2{
+color:#60a5fa;
+margin-bottom:15px;
+}
+
+.card ul{
+padding-left:20px;
+}
+
+.card li{
+margin-bottom:8px;
+}
+
+button{
+margin-top:30px;
+width:100%;
+padding:15px;
+font-size:18px;
+font-weight:bold;
+border:none;
+border-radius:10px;
+cursor:pointer;
+background:#3b82f6;
+color:white;
+}
+
+button:hover{
+background:#2563eb;
+}
+
+#status{
+margin-top:20px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+}
+
+footer{
+margin-top:40px;
+text-align:center;
+opacity:.8;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>🚀 Progressive Web App</h1>
+<p>Demonstração prática dos conceitos de PWA</p>
+</header>
+
+<div class="container">
+
+<div class="card">
+<h2>📱 Manifest.json</h2>
+<p>
+Arquivo responsável por transformar o site em um aplicativo instalável.
+</p>
+
+<ul>
+<li>Nome do aplicativo</li>
+<li>Ícones</li>
+<li>Cor do tema</li>
+<li>Tela inicial</li>
+<li>Modo Standalone</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>⚡ Service Worker</h2>
+
+<p>
+Script executado em segundo plano.
+</p>
+
+<ul>
+<li>Controla o cache</li>
+<li>Funciona offline</li>
+<li>Intercepta requisições</li>
+<li>Melhora a performance</li>
+</ul>
+</div>
+
+<div class="card">
+<h2>💾 Cache Storage</h2>
+
+<p>
+Armazena arquivos localmente.
+</p>
+
+<ul>
+<li>HTML</li>
+<li>CSS</li>
+<li>JavaScript</li>
+<li>Imagens</li>
+</ul>
+
+</div>
+
+<div class="card">
+<h2>📊 Estratégias de Cache</h2>
+
+<ul>
+<li><b>Cache First</b> → Mais rápido</li>
+<li><b>Network First</b> → Mais atualizado</li>
+<li><b>Cache Only</b> → Apenas cache</li>
+</ul>
+
+</div>
+
+<div class="card">
+<h2>🌐 Offline First</h2>
+
+<p>
+Após visitar a aplicação uma vez, os arquivos ficam salvos localmente.
+</p>
+
+<p>
+Mesmo sem internet o usuário poderá acessar a aplicação.
+</p>
+
+</div>
+
+<div class="card">
+<h2>📲 Instalação</h2>
+
+<p>
+Uma PWA pode ser instalada no celular ou computador sem passar pela loja de aplicativos.
+</p>
+
+</div>
+
+</div>
+
+<button id="statusBtn">
+Verificar Conexão
+</button>
+
+<div id="status"></div>
+
+<footer>
+PWA Educacional - Aula de Front-End
+</footer>
+
+<script>
+
+const statusBtn =
+document.getElementById("statusBtn");
+
+const statusDiv =
+document.getElementById("status");
+
+statusBtn.addEventListener("click",()=>{
+
+if(navigator.onLine){
+
+statusDiv.innerHTML =
+"🟢 Você está ONLINE";
+
+}else{
+
+statusDiv.innerHTML =
+"🔴 Você está OFFLINE";
+
+}
+
+});
+
+if("serviceWorker" in navigator){
+
+window.addEventListener("load",()=>{
+
+navigator.serviceWorker
+.register("service-worker.js")
+.then(()=>{
+
+console.log(
+"Service Worker Registrado!"
+);
+
+})
+.catch(err=>{
+
+console.log(err);
+
+});
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
